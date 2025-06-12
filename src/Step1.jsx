@@ -6,7 +6,8 @@ export default function Step1() {
   const { formData, setFormData } = useContext(FormContext);
   const navigate = useNavigate();
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
     navigate("/step2");
   }
 

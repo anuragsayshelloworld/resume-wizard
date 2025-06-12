@@ -10,6 +10,17 @@ export function FormProvider({ children }) {
     name: '',
     email: '',
     phone: '',
+    college: '',
+    address: '',
+    experience: '',
+    skill1: '',
+    skill2: '',
+    skill3: '',
+    objective: '',
+    image: '',
+    project1: '',
+    project2: '',
+    project3: ''
     // add more fields as needed
   });
 
