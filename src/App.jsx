@@ -1,6 +1,7 @@
 import { FormProvider } from "./FormContext";
 import Questions from "./Questions";
 import { BrowserRouter } from "react-router-dom";
+import Results from "./Results";
 
 export default function App(){
 return <FormProvider>
@@ -19,7 +20,3 @@ return <FormProvider>
 </FormProvider>
 }
 
-
-function Results(){
-return <p>sth</p>
-}

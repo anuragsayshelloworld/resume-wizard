@@ -1,39 +1,75 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { FormContext } from "./FormContext";
 
 export default function Step1() {
-  const { formData, setFormData } = useContext(FormContext); // ✅ lowercase
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-
+  const { formData, setFormData } = useContext(FormContext);
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    const newData = {
-      ...formData,
-      name: name,
-      email: email,
-      phone: phone
-    };
-
-    setFormData(newData);
-    navigate("/step2", { replace: true });
-  };
+  function handleSubmit() {
+    navigate("/step2");
+  }
 
   return (
-    <>
-      <label htmlFor="name">What is your full name?</label>
-      <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+    <form onSubmit={handleSubmit}>
+    <div className="container mt-5" style={{ maxWidth: "500px" }}>
+      <h2 className="mb-4">Step 1: Your Information</h2>
 
-      <label htmlFor="email">What is your email address?</label>
-      <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <div className="mb-3">
+        <label htmlFor="name" className="form-label">
+          What is your full name?
+        </label>
+        <input
+          type="text"
+          id="name"
+          className="form-control"
+          value={formData.name}
+          onChange={(e) =>
+            setFormData((prev) => ({ ...prev, name: e.target.value }))
+          }
+          required
+          placeholder="Enter your full name"
+        />
+      </div>
 
-      <label htmlFor="phone">What is your phone number?</label>
-      <input type="number" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
+      <div className="mb-3">
+        <label htmlFor="email" className="form-label">
+          What is your email address?
+        </label>
+        <input
+          type="email"
+          id="email"
+          className="form-control"
+          value={formData.email}
+          onChange={(e) =>
+            setFormData((prev) => ({ ...prev, email: e.target.value }))
+          }
+          required
+          placeholder="Enter your email"
+        />
+      </div>
 
-      <button onClick={handleClick}>Next</button>
-    </>
+      <div className="mb-4">
+        <label htmlFor="phone" className="form-label">
+          What is your phone number?
+        </label>
+        <input
+          type="tel"
+          id="phone"
+          className="form-control"
+          value={formData.phone}
+          onChange={(e) =>
+            setFormData((prev) => ({ ...prev, phone: e.target.value }))
+          }
+          required
+          placeholder="Enter your phone number"
+        />
+      </div>
+
+      <button className="btn btn-primary w-100">
+        Next
+      </button>
+    </div>
+    </form>
   );
 }
